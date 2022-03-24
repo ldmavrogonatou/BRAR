@@ -4,7 +4,7 @@ import numpy.matlib
 import numpy as np
 from scipy.stats import ncx2
 from scipy.stats.distributions import chi2
-from set import *
+from utils import makeX, makeS, makeU, makeZ
 
 def posterior_update(nalloc,S,a,sigma,priormu,priorSigma,ncur,K,T,mustar,Sigmastar):
 
@@ -36,7 +36,7 @@ def posterior_update(nalloc,S,a,sigma,priormu,priorSigma,ncur,K,T,mustar,Sigmast
 def objfunc(ncur,N,K,T,mustar,Sigmastar):
 
     simulation_time = 100
-    max_time = [0] * K   
+    max_time = [0] * K
     for _ in range(simulation_time):
         sample = np.random.multivariate_normal(mustar,Sigmastar)
         max_time[argmin(sample)] += 1.0 # smaller treatment effect is better in this case study

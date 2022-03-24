@@ -4,7 +4,7 @@ import numpy.matlib
 import numpy as np
 from scipy.stats import ncx2
 from scipy.stats.distributions import chi2
-from set import *
+from utils import makeX, makeS, makeU, makeZ
 
 # objective function for D_A-optimality
 def objfunc(nalloc,a,sigma,priorSigma,ncur,K,T):
@@ -121,7 +121,7 @@ def power(nalloc,a,sigma,N,K,T,p,incr):
 
     return pwr
 
-# calculate power for certain p_0 and p_1 
+# calculate power for certain p_0 and p_1
 def powerind(nalloc,a,sigma,N,K,T,p0,p1):
 
     X = makeX(N,K,T,nalloc)

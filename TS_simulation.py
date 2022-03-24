@@ -3,7 +3,7 @@ import time
 import math
 import numpy as np
 import numpy.matlib
-from TSind import *
+from TS_optimisation import *
 
 Nsim = 500
 
