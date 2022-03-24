@@ -9,7 +9,7 @@ def makeX(N,Ntreat,Nblock,n):
     nnprev = 0
     for i in range(Nblock):
         for j in range(Ntreat):
-            nn = n[i][j]
+            nn = int(n[i][j])
             for jj in range(Ntreat):
                 if (j==jj):
                     X[nnprev:(nnprev+nn),jj] = np.ones(nn)
@@ -26,7 +26,7 @@ def makeZ(N,Ntreat,Nblock,n):
     for i in range(Nblock):
         nn = 0
         for j in range(Ntreat):
-            nn += n[i][j]
+            nn += int(n[i][j])
         for ii in range(Nblock):
             if (i==ii):
                 Z[nnprev:(nnprev+nn),ii] = np.ones(nn)
@@ -45,7 +45,7 @@ def makeS(N,Nblock,Ntreat,n,sigma):
     nnprev = 0
     for i in range(Nblock):
         for j in range(Ntreat):
-            nn = n[i][j]
+            nn = int(n[i][j])
             S[nnprev:(nnprev+nn),nnprev:(nnprev+nn)] = np.diag(np.ones(nn)*sigma[j])
             nnprev += nn
 
