@@ -4,11 +4,11 @@ import numpy.matlib
 import numpy as np
 from scipy.stats import ncx2
 from scipy.stats.distributions import chi2
-from set import *
+from utils import makeX, makeS, makeU, makeZ
 
 def posterior_update(nalloc,S,a,sigma,priormu,priorSigma,ncur,K,T,mustar,Sigmastar):
 
-    # generate atrices for calculations
+    # generate matrices for calculations
     aall = np.ones(T)*a
     X = makeX(ncur,K,T,nalloc)
     Z = makeZ(ncur,K,T,nalloc)
@@ -32,11 +32,10 @@ def posterior_update(nalloc,S,a,sigma,priormu,priorSigma,ncur,K,T,mustar,Sigmast
 
     return mustar,Sigmastar
 
-# objective function for outcome-oriented allocation (optimise with respect to treatment effect)
 def objfunc(ncur,N,K,T,mustar,Sigmastar):
-
+    """ Objective function for outcome-oriented allocation (optimise with respect to treatment effect)"""
     simulation_time = 100
-    max_time = [0] * K   
+    max_time = [0] * K
     for _ in range(simulation_time):
         sample = np.random.multivariate_normal(mustar,Sigmastar)
         max_time[argmin(sample)] += 1.0 # smaller treatment effect is better in this case study
@@ -71,9 +70,8 @@ def normalize(probs):
         s = 1;
     return list(map(lambda x: x/s, probs))
 
-# function to evaluate power for given p_0 and p_1 in [0,30]
 def power(nalloc,a,sigma,N,K,T,p,incr):
-
+    """ Function to evaluate power for given p_0 and p_1 in [0,30]"""
     end = int(30.0/incr)
     pwr = np.empty(end)
     pos = 0
@@ -109,9 +107,8 @@ def power(nalloc,a,sigma,N,K,T,p,incr):
 
     return pwr
 
-# obective function for D_A-optimality
 def objfuncDopt(nalloc,a,sigma,priorSigma,ncur,K,T):
-
+     """ objective function for D_A-optimality """
      X = makeX(ncur,K,T,nalloc)
      Z = makeZ(ncur,K,T,nalloc)
      U = makeU(T,a)

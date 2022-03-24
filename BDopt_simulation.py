@@ -3,7 +3,7 @@ import time
 import math
 import numpy as np
 import numpy.matlib
-from BDopt import *
+from BDopt_optimisation import *
 
 Nsim = 500
 

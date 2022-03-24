@@ -4,11 +4,10 @@ import numpy.matlib
 import numpy as np
 from scipy.stats import ncx2
 from scipy.stats.distributions import chi2
-from set import *
+from utils import makeX, makeS, makeU, makeZ
 
-# objective function for D_A-optimality
 def objfunc(nalloc,a,sigma,priorSigma,ncur,K,T):
-
+    """ objective function for D_A-optimality """
      X = makeX(ncur,K,T,nalloc)
      Z = makeZ(ncur,K,T,nalloc)
      U = makeU(T,a)
@@ -34,9 +33,8 @@ def objfunc(nalloc,a,sigma,priorSigma,ncur,K,T):
 
      return f
 
-# standard grid search optimisation to minimise the objective function for D_A-optimality (objfunc)
 def opt(N,Ntreat,Nblock,a,sigma,priorSigma):
-
+    """ standard grid search optimisation to minimise the objective function for D_A-optimality (objfunc) """
     if( Nblock==1 ):
         fmin = 100
         nmin = np.zeros((Nblock,Ntreat))
@@ -84,9 +82,8 @@ def opt(N,Ntreat,Nblock,a,sigma,priorSigma):
 
     return nmin
 
-# calculate power for certain p_0 and p_1 in [0,30]
 def power(nalloc,a,sigma,N,K,T,p,incr):
-
+    """ calculate power for certain p_0 and p_1 in [0,30] """
     end = int(30.0/incr)
     pwr = np.empty(end)
     pos = 0
@@ -121,9 +118,8 @@ def power(nalloc,a,sigma,N,K,T,p,incr):
 
     return pwr
 
-# calculate power for certain p_0 and p_1 
 def powerind(nalloc,a,sigma,N,K,T,p0,p1):
-
+    """ calculate power for certain p_0 and p_1 """
     X = makeX(N,K,T,nalloc)
     Z = makeZ(N,K,T,nalloc)
     U = makeU(T,a)

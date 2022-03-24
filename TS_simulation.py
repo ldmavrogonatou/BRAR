@@ -3,20 +3,24 @@ import time
 import math
 import numpy as np
 import numpy.matlib
-from TSind import *
+from TS_optimisation import *
 
 Nsim = 500
 
 Nall = 24
 Ntreats = 2
 Nblocks = 1
-Nperb = Nall/Nblocks
+Nperb = int(Nall/Nblocks)
 Nsubblocks = 6
-Npersubb = Nperb/Nsubblocks
+Npersubb = int(Nperb/Nsubblocks)
 
 allp = [[5],[15]]
-
 allsigma = [[16,16,16,5.29,5.29,3.43],[1.61,3.43,5.29,1.61,3.43,1.61]]
+
+
+# finds internal length of nested lists
+len_allsigma = len(allsigma[0])
+len_allp = len(allp[0])
 
 alla = [1]
 a = [alla[0]]
@@ -42,12 +46,12 @@ def gensumy(nalloc,arms_prob,sigma,Ntreats,Nsubblocks):
     return sumy
 
 # repeat for every scenario of response variances (sigma_0,sigma_1)
-for ss in range(allsigma.shape[1]):
+for ss in range(len_allsigma):
 
     sigmatrue = [math.pow(allsigma[0][ss],2.0),math.pow(allsigma[1][ss],2.0)]
 
 # repeat for every scenario of treatment effects (p_0,p_1)
-    for ppp in range(allp.shape[1]):
+    for ppp in range(len_allp):
 
         arms_prob = [allp[0][ppp],allp[1][ppp]]
         f = open("TS_N%i_b%i_p%i%i.txt" % (Nall,Nsubblocks,arms_prob[0],arms_prob[1]), "w")
@@ -85,7 +89,7 @@ for ss in range(allsigma.shape[1]):
                 count = [0.0 for _ in range(Ntreats)]
                 tempS = [0.0 for _ in range(Ntreats)]
                 for tt in range(Npersubb):
-                    arm_choice = np.random.randint(2, size=1) # allocate patient tt randomly to one of the treatments with equal probability
+                    arm_choice = np.random.randint(2) # allocate patient tt randomly to one of the treatments with equal probability
                     count[arm_choice] += 1                    # count total number of patients per treatment within cohort 0
                     res = alloKthArm(arm_choice,arms_prob,sigmatrue) # generate observation for patient tt allocated to treatment arm_choice
                     tempS[arm_choice] += res                          # sum up all patient outcomes for treatment arm_choice in order to obtain the mean
@@ -176,7 +180,7 @@ for ss in range(allsigma.shape[1]):
                 sy = np.zeros(np.shape(noptall))
                 sy = gensumy(noptall,arms_prob,sigmatrue,Ntreats,Nsubblocks)
                 tempest[i] = est(noptall,sy,aallsubb,sigmatrue,Nall,Ntreats,Nsubblocks)
-                mse += math.pow(tempest[i]-(allp2[0]-allp[0]),2.0)/(Nsimest*Nsim)
+                mse += math.pow(tempest[i]-(allp[1][0]-allp[0][0]),2.0)/(Nsimest*Nsim)
 
             allest[n] = sum(tempest)/Nsimest
             allsdest[n] = np.std(tempest)
