@@ -89,7 +89,7 @@ for ss in range(len_allsigma):
                 count = [0.0 for _ in range(Ntreats)]
                 tempS = [0.0 for _ in range(Ntreats)]
                 for tt in range(Npersubb):
-                    arm_choice = np.random.randint(2, size=1) # allocate patient tt randomly to one of the treatments with equal probability
+                    arm_choice = np.random.randint(2) # allocate patient tt randomly to one of the treatments with equal probability
                     count[arm_choice] += 1                    # count total number of patients per treatment within cohort 0
                     res = alloKthArm(arm_choice,arms_prob,sigmatrue) # generate observation for patient tt allocated to treatment arm_choice
                     tempS[arm_choice] += res                          # sum up all patient outcomes for treatment arm_choice in order to obtain the mean
