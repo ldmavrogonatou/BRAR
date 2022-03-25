@@ -8,30 +8,30 @@ from utils import makeX, makeS, makeU, makeZ
 
 def objfunc(nalloc,a,sigma,priorSigma,ncur,K,T):
     """ objective function for D_A-optimality """
-     X = makeX(ncur,K,T,nalloc)
-     Z = makeZ(ncur,K,T,nalloc)
-     U = makeU(T,a)
-     Sigma = makeS(ncur,T,K,nalloc,sigma)
+    X = makeX(ncur,K,T,nalloc)
+    Z = makeZ(ncur,K,T,nalloc)
+    U = makeU(T,a)
+    Sigma = makeS(ncur,T,K,nalloc,sigma)
 
-     V = np.add(Sigma,np.dot(np.dot(Z,U),Z.T))
+    V = np.add(Sigma,np.dot(np.dot(Z,U),Z.T))
 
-     d = np.identity(ncur)
-     Vinv = np.linalg.solve(V, d)
+    d = np.identity(ncur)
+    Vinv = np.linalg.solve(V, d)
 
-     M = np.dot(np.dot(X.T,Vinv),X)
+    M = np.dot(np.dot(X.T,Vinv),X)
 
-     dM = np.identity(K)
-     Minv = np.linalg.solve(M, dM)
+    dM = np.identity(K)
+    Minv = np.linalg.solve(M, dM)
 
-     A = np.zeros((K,1))
-     A[0][0] = -1
-     A[1][0] = 1
-     AMAT = np.dot(np.dot(A.T,Minv),A)
+    A = np.zeros((K,1))
+    A[0][0] = -1
+    A[1][0] = 1
+    AMAT = np.dot(np.dot(A.T,Minv),A)
 
-     detAMAT = np.linalg.det(AMAT)
-     f = math.log(detAMAT)
+    detAMAT = np.linalg.det(AMAT)
+    f = math.log(detAMAT)
 
-     return f
+    return f
 
 def opt(N,Ntreat,Nblock,a,sigma,priorSigma):
     """ standard grid search optimisation to minimise the objective function for D_A-optimality (objfunc) """
