@@ -168,7 +168,7 @@ for ss in range(len_allsigma):
                 sy = np.zeros(np.shape(noptall))
                 sy = gensumy(noptall,arms_prob,sigmatrue,Ntreats,Nsubblocks)
                 tempest[i] = est(noptall,sy,aallsubb,sigmatrue,Nall,Ntreats,Nsubblocks)
-                mse += math.pow(tempest[i]-(allp2[0]-allp[0]),2.0)/(Nsimest*Nsim)
+                mse += math.pow(tempest[i]-(allp[1][0]-allp[0][0]),2.0)/(Nsimest*Nsim)
 
             allest[n] = sum(tempest)/Nsimest
             allsdest[n] = np.std(tempest)
