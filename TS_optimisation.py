@@ -102,7 +102,10 @@ def power(nalloc,a,sigma,N,K,T,p,incr):
         pc = p-pos
         ncp = pow(pc,2)/f*N
         x = chi2.ppf(0.95,1)
-        pwr[i] = 1-ncx2.cdf(x, 1, ncp)
+        if (pc==0):
+            pwr[i] = 1-chi2.cdf(x,1)
+        else:
+            pwr[i] = 1-ncx2.cdf(x, 1, ncp)
         pos = pos+incr
 
     return pwr
