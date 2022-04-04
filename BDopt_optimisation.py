@@ -38,7 +38,7 @@ def opt(N,Ntreat,Nblock,a,sigma,priorSigma):
     if( Nblock==1 ):
         fmin = 100
         nmin = np.zeros((Nblock,Ntreat))
-        # perform search over the design space D={[1,2,...]x[1,2,...];i0+i1=N}
+        # perform search over the design space 
         for i0 in range(1,N):
             for i1 in range(1,N):
                         if( i0+i1==N ):
