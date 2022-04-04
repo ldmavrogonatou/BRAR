@@ -156,14 +156,11 @@ def est(n,sumy,a,sigma,N,K,T):
     for i in range(T):
         for j in range(K):
             rho[i,j] = float(n[i][j])
-            #print('(%i,%i)=%.5f',i,j,str(rho[i,j]))
-    #rho[:] = [x / N for x in n]
 
     g = np.zeros(T)
     for i in range(T):
         g[i] = 1.0 + a[i]*rho[i,0]/sigma[0] + a[i]*rho[i,1]/sigma[1]
 
-    #print(g)
     dt11 = 0
     dt22 = 0
     dt12 = 0
@@ -178,5 +175,5 @@ def est(n,sumy,a,sigma,N,K,T):
     for i in range(T):
         psest[0] += ((dt22/sigma[0] - dt22*rho[i,0]*a[i]/(g[i]*pow(sigma[0],2.0)) + dt12*rho[i,1]*a[i]/(g[i]*sigma[0]*sigma[1]))*sumy[i][0] + (-dt22*rho[i,0]*a[i]/(g[i]*sigma[0]*sigma[1]) - dt12/sigma[1] + dt12*rho[i,1]*a[i]/(g[i]*pow(sigma[1],2.0)))*sumy[i][1])/(detM)
         psest[1] += ((-dt21/sigma[0] + dt21*rho[i,0]*a[i]/(g[i]*pow(sigma[0],2.0)) - dt11*rho[i,1]*a[i]/(g[i]*sigma[0]*sigma[1]))*sumy[i][0] + (dt21*rho[i,0]*a[i]/(g[i]*sigma[0]*sigma[1]) + dt11/sigma[1] - dt11*rho[i,1]*a[i]/(g[i]*pow(sigma[1],2.0)))*sumy[i][1])/(detM)
-    #print(psest)
+    
     return (psest[1]-psest[0])
