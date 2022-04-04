@@ -178,11 +178,11 @@ for ss in range(len_allsigma):
 
             sy = gensumy(nNeyman,arms_prob,sigmatrue,Ntreats,Nsubblocks)
             tempestN[i] = est(nNeyman,sy,aallsubb,sigmatrue,Nall,Ntreats,Nsubblocks)
-            mseN += math.pow(tempestN[i]-(allp2[0]-allp[0]),2.0)/Nsimest
+            mseN += math.pow(tempestN[i]-(allp[1][0]-allp[0][0]),2.0)/Nsimest
 
             sy = gensumy(nbal,arms_prob,sigmatrue,Ntreats,Nsubblocks)
             tempestb[i] = est(nbal,sy,aallsubb,sigmatrue,Nall,Ntreats,Nsubblocks)
-            mseb += math.pow(tempestb[i]-(allp2[0]-allp[0]),2.0)/Nsimest
+            mseb += math.pow(tempestb[i]-(allp[1][0]-allp[0][0]),2.0)/Nsimest
 
         mest = sum(allest)/Nsim
         stdest = sum(allsdest)/Nsim
