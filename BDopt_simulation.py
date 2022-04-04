@@ -196,8 +196,6 @@ for ss in range(len_allsigma):
 
         #f.write("%.3f %.3f %.3f %.3f %.3f %.3f" % (mest,stdest,mestN,stdestN,mestb,stdestb))
         #f.write("%.3f %.3f %.3f %.3f %.3f \n" % (sigmatrue[0],sigmatrue[1],mse,mseN,mseb))
-
-        print('('+str(allsigma0[ss])+','+str(allsigma1[ss])+') & '+str(round(mest,2))+' ('+str(round(stdest,2))+')'+'& '+str(round(mestN,2))+' ('+str(round(stdestN,2))+')'+'& '+str(round(mestb,2))+' ('+str(round(stdestb,2))+')'+'& '+str(pwr)+'& '+str(pwrN)+'& '+str(pwrb))
         #f.write("%.3f,%.3f,%.1f %.1f" % (sigmatrue[0],sigmatrue[1],allsumcount[0]/Nsim,allsumcount[1]/Nsim))
         #f.write("\n")
 
