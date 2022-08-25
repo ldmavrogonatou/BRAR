@@ -1,8 +1,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6412420.svg)](https://doi.org/10.5281/zenodo.6412420)
 
-This repository provides illustrative code in support of the manuscript  
-*"A comparison of allocation strategies for optimising clinical trial designs under variance heterogeneity"*  
-which is currently under review. 
+This repository provides illustrative code in support of the manuscript:    
+[A comparison of allocation strategies for optimising clinical trial designs under variance heterogeneity](https://doi.org/10.1016/j.csda.2022.107559)
   
 The code is provided under GNU-GPL-3 and thus comes without warranty. As such, users are advised to proceed with due scientific caution.
 
