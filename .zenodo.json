@@ -1,0 +1,25 @@
+{
+  "creators": [
+    {
+      "name": "Lida Mavrogonatou",
+      "affiliation": "MRC Biostatistics Unit, School of Clinical Medicine, University of Cambridge"
+    },
+    {
+      "name": "Yuxuan Sun",
+      "affiliation":"Department of Pure Mathematics and Mathematical Statistics, University of Cambridge"
+    },
+    {
+      "name": "Phillip Crout",
+      "orcid": "0000-0001-5754-0938",
+      "affiliation": "MRC Biostatistics Unit, School of Clinical Medicine, University of Cambridge"
+    },
+    {
+      "name": "David S. Robertson",
+      "affiliation": "MRC Biostatistics Unit, School of Clinical Medicine, University of Cambridge"
+    },
+    {
+      "name": "Sofía S. Villar",
+      "affiliation": "MRC Biostatistics Unit, School of Clinical Medicine, University of Cambridge"
+    } 
+  ]
+}
